@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+	<title>tsuru follow</title>
+</head>
+<body>
+	<h1>tsuru follow</h1>
+	<ul>
+		{% for app in app_list %}
+		<li>{{ app.name }} <a href="">follow</a></li>
+		{% endfor %}
+	</ul>
+</body>
+</html>
+
