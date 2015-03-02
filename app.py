@@ -14,6 +14,11 @@ TSURU_TOKEN = os.environ.get("TSURU_TOKEN")
 TSURU_HOST = os.environ.get("TSURU_HOST")
 
 
+@app.route("/app/<appname>/follow", methods=["POST"])
+def app_follow():
+    return "", 200
+
+
 @app.route("/")
 def app_list():
     headers = {'authorization': TSURU_TOKEN}
