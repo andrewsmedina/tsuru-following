@@ -1,15 +1,16 @@
-<!doctype html>
-<html>
-<head>
-	<title>tsuru follow</title>
-</head>
-<body>
-	<h1>tsuru follow</h1>
-	<ul>
-		{% for app in app_list %}
-		<li>{{ app.name }} <a href="">follow</a></li>
-		{% endfor %}
-	</ul>
-</body>
-</html>
+{% extends "bootstrap/base.html" %}
+{% block title %}tsuru follow{% endblock %}
 
+{% block content %}
+<div class="container-fluid">
+<h1>tsuru follow</h1>
+<table class="table table-hover">
+	{% for app in app_list %}
+	<tr>
+		<td>{{ app.name }}</td>
+		<td><a class="btn btn-default" href="">follow</a></td>
+	</tr>
+	{% endfor %}
+</table>
+</div>
+{% endblock %}

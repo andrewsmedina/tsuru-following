@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask_bootstrap import Bootstrap
 
 import os
 
@@ -8,6 +9,7 @@ import requests
 
 app = Flask(__name__)
 app.debug = os.environ.get('DEBUG', '0') in ('true', 'True', '1')
+Bootstrap(app)
 
 
 TSURU_TOKEN = os.environ.get("TSURU_TOKEN")
