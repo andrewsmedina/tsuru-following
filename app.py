@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask_bootstrap import Bootstrap
+from flask.ext.pymongo import PyMongo
 
 import os
 
@@ -10,6 +11,7 @@ import requests
 app = Flask(__name__)
 app.debug = os.environ.get('DEBUG', '0') in ('true', 'True', '1')
 Bootstrap(app)
+mongo = PyMongo(app)
 
 
 TSURU_TOKEN = os.environ.get("TSURU_TOKEN")
