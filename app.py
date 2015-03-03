@@ -15,6 +15,11 @@ Bootstrap(app)
 #mongo = PyMongo(app)
 
 
+@app.template_filter('linebreaksbr')
+def linebreaksbr(value):
+    return value.replace('\n', '<br>')
+
+
 @app.template_filter('duration')
 def duration(value):
     return time.strftime('%Mm%Ss', time.gmtime(float(value)/1000000000))

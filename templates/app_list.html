@@ -12,12 +12,39 @@
 		<td>Application</td>
 		<td>Duration</td>
 		<td>Timestamp</td>
+		<td></td>
 	</tr>
 	{% for deploy in deploy_list %}
 	<tr{% if deploy.Error %} class="danger"{% endif %}>
-		<td>{{ deploy.App }}</td>
+		<td>{{ deploy.App }}
+		</td>
 		<td>{{ deploy.Duration|duration }}</td>
 		<td>{{ deploy.Timestamp }}</td>
+		<td>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-{{ deploy.ID }}">
+Details
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-{{ deploy.ID }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="myModalLabel">{{ deploy.App }}</h4>
+</div>
+<div class="modal-body">
+	{% if deploy.Error %}<div class="alert alert-danger" role="alert">{{ deploy.Error }}</div>{% endif %}
+{{ deploy.Log|linebreaksbr|safe }}
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+		</td>
 	</tr>
 	{% endfor %}
 </table>
