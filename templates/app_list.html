@@ -16,7 +16,7 @@
 	{% for deploy in deploy_list %}
 	<tr{% if deploy.Error %} class="danger"{% endif %}>
 		<td>{{ deploy.App }}</td>
-		<td>{{ deploy.Duration }}</td>
+		<td>{{ deploy.Duration|duration }}</td>
 		<td>{{ deploy.Timestamp }}</td>
 	</tr>
 	{% endfor %}

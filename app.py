@@ -4,16 +4,20 @@ from flask_bootstrap import Bootstrap
 from flask.ext.pymongo import PyMongo
 
 import os
-
 import requests
-
 import forms
+import time
 
 
 app = Flask(__name__)
 app.debug = os.environ.get('DEBUG', '0') in ('true', 'True', '1')
 Bootstrap(app)
 #mongo = PyMongo(app)
+
+
+@app.template_filter('duration')
+def duration(value):
+    return time.strftime('%Mm%Ss', time.gmtime(float(value)/1000000000))
 
 
 TSURU_TOKEN = os.environ.get("TSURU_TOKEN")
