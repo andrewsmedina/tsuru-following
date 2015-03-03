@@ -4,13 +4,35 @@
 {% block content %}
 <div class="container-fluid">
 <h1>tsuru follow</h1>
+<div class="row">
+<div class="col-md-9">
+<h2>Deploys</h2>
 <table class="table table-hover">
-	{% for app in app_list %}
 	<tr>
-		<td>{{ app.name }}</td>
-		<td><a class="btn btn-default" href="">follow</a></td>
+		<td>Application</td>
+		<td>Duration</td>
+		<td>Timestamp</td>
+	</tr>
+	{% for deploy in deploy_list %}
+	<tr{% if deploy.Error %} class="danger"{% endif %}>
+		<td>{{ deploy.App }}</td>
+		<td>{{ deploy.Duration }}</td>
+		<td>{{ deploy.Timestamp }}</td>
 	</tr>
 	{% endfor %}
 </table>
+</div>
+<div class="col-md-3">
+<table class="table table-hover">
+	<h2>Apps to follow</h2>
+	{% for app in app_list %}
+	<tr>
+		<td>{{ app.name }}</td>
+		<td><a class="btn btn-default" href="">following</a></td>
+	</tr>
+	{% endfor %}
+</table>
+</div>
+</div>
 </div>
 {% endblock %}

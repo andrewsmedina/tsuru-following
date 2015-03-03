@@ -3,3 +3,4 @@ requests==2.5.3
 Flask-Login==0.2.11
 Flask-Bootstrap==3.3.0.1
 Flask-PyMongo==0.3.0
+Flask-WTF==0.11

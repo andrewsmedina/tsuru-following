@@ -7,11 +7,13 @@ import os
 
 import requests
 
+import forms
+
 
 app = Flask(__name__)
 app.debug = os.environ.get('DEBUG', '0') in ('true', 'True', '1')
 Bootstrap(app)
-mongo = PyMongo(app)
+#mongo = PyMongo(app)
 
 
 TSURU_TOKEN = os.environ.get("TSURU_TOKEN")
@@ -26,9 +28,14 @@ def app_follow():
 @app.route("/")
 def app_list():
     headers = {'authorization': TSURU_TOKEN}
+
     url = '{}/apps'.format(TSURU_HOST)
     app_list = requests.get(url, headers=headers).json()
-    return render_template('app_list.html', app_list=app_list)
+
+    url = '{}/deploys'.format(TSURU_HOST)
+    deploy_list = requests.get(url, headers=headers).json()
+
+    return render_template('app_list.html', app_list=app_list, deploy_list=deploy_list)
 
 
 if __name__ == "__main__":
